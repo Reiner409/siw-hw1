@@ -4,10 +4,13 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Docente {
@@ -24,6 +27,10 @@ public class Docente {
 	
 	private int partitaIva;
 	
+	//Fetch impostato su Eager in quanto i corsi appartenenti al docente non sono molti ed è probabile
+	//Che si voglia accedere anche ad un corso insegnato dal docente.
+	//Cascade impostato su Persist e Merge in quanto in caso un docente può essere collegato ad un corso nuovo, oppure può modificare un corso.
+	@OneToMany(mappedBy = "docente",fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Corso> corsi;
 
 	public Docente(String nome, String cognome, LocalDate dataNascita, String luogoNascita, int partitaIva) {

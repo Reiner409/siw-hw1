@@ -5,9 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Allievo {
@@ -25,8 +28,14 @@ public class Allievo {
 	private int matricola;
 	private String email;
 	
+	//Fetch type impostato su Eager in quanto è solo un'associazione per quanto 
+	//non vogliamo sempre accedere la società, il caricamento di essa non risulta pesante per il sistema.
+	@OneToOne(fetch = FetchType.EAGER)
 	private Societa societa;
 	
+	//Il fetch e' impostato su LAZY in quanto non è detto che nel momento in cui accedo un allievo io voglia conoscere a priori i suoi corsi.
+	//Cascade di nessun tipo in quanto i corsi non sono direttamente creati o modificati dagli studenti.
+	@ManyToMany(mappedBy = "allievi", fetch = FetchType.LAZY)
 	private List<Corso> corsi;
 
 	public Allievo(String nome, String cognome, LocalDate dataNascita, String luogoNascita, int matricola, String email,
