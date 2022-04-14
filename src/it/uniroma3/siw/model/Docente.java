@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,13 +19,18 @@ public class Docente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
+	@Column(nullable = false)
 	private String nome;
+	@Column(nullable = false)
 	private String cognome;
 	
+	@Column(nullable = false)
 	private LocalDate dataNascita;
+	@Column(nullable = false)
 	private String luogoNascita;
 	
+	@Column(nullable = false)
 	private int partitaIva;
 	
 	//Fetch impostato su Eager in quanto i corsi appartenenti al docente non sono molti ed è probabile

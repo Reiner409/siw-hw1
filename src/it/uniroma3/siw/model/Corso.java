@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,8 +20,11 @@ public class Corso {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nome;
+	@Column(nullable = false)
 	private LocalDate dataInizio;
+	@Column(nullable = false)
 	private float durataMesi;
 	
 	//Tipo di Fetch LAZY in quanto gli studenti iscritti ad un corso potrebbero essere parecchi
@@ -28,7 +32,7 @@ public class Corso {
 	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Allievo> allievi;
 	
-	@ManyToOne()
+	@ManyToOne
 	private Docente docente;
 	
 	public Corso(String nome, LocalDate dataInizio, float durataMesi, Docente docente) {

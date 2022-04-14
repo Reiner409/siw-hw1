@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,13 +20,19 @@ public class Allievo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nome;
+	@Column(nullable = false)
 	private String cognome;
 	
+	@Column(nullable = false)
 	private LocalDate dataNascita;
+	@Column(nullable = false)
 	private String luogoNascita;
 	
+	@Column(nullable = false)
 	private int matricola;
+	@Column(nullable = false)
 	private String email;
 	
 	//Fetch type impostato su Eager in quanto è solo un'associazione per quanto 
@@ -36,6 +43,7 @@ public class Allievo {
 	//Il fetch e' impostato su LAZY in quanto non è detto che nel momento in cui accedo un allievo io voglia conoscere a priori i suoi corsi.
 	//Cascade di nessun tipo in quanto i corsi non sono direttamente creati o modificati dagli studenti.
 	@ManyToMany(mappedBy = "allievi", fetch = FetchType.LAZY)
+	@Column(nullable = false)
 	private List<Corso> corsi;
 
 	public Allievo(String nome, String cognome, LocalDate dataNascita, String luogoNascita, int matricola, String email,

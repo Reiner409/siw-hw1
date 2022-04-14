@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,16 +13,22 @@ public class Societa {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String ragioneSociale;
-	
-	
+		
 	//IndirizzoSede
+	@Column(nullable = false)
 	private int numeroCivico;
+	@Column(nullable = false)
 	private int cap;
+	@Column(nullable = false)
 	private String via;
+	@Column(nullable = false)
 	private String comune;
+	@Column(nullable = false)
 	private String provincia;
 	
+	@Column(nullable = false)
 	private int numeroTelefono;
 
 	public Societa(String ragioneSociale, int numeroCivico, int cap, String via, String comune, String provincia,
