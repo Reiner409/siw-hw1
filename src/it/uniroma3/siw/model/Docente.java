@@ -36,7 +36,7 @@ public class Docente {
 	//Fetch impostato su Eager in quanto i corsi appartenenti al docente non sono molti ed è probabile
 	//Che si voglia accedere anche ad un corso insegnato dal docente.
 	//Cascade impostato su Persist e Merge in quanto in caso un docente può essere collegato ad un corso nuovo, oppure può modificare un corso.
-	@OneToMany(mappedBy = "docente",fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(mappedBy = "docente",fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Corso> corsi;
 
 	public Docente(String nome, String cognome, LocalDate dataNascita, String luogoNascita, int partitaIva) {
