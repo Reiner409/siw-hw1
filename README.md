@@ -1,7 +1,7 @@
 # siw-hw1
 First homework for the College's course SIW.
 
-Following there is the text from the essay given by the teacher.
+ ## Following we got the text from the essay given by the teacher.
 
 Homework 1 (Persistenza: JPA)
 Stiamo scrivendo il codice per il sistema informativo di un ente che eroga corsi di formazione. Per ogni corso 
